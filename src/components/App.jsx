@@ -1,6 +1,8 @@
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import Navbar from 'components/Navbar/Navbar';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
@@ -24,13 +26,13 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/contacts" element={<ContactsPage />} />
-          </Route>
-          <Route element={<RestrictedRoute />}>
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
+          {/* <Route element={<PrivateRoute />}> */}
+          <Route path="/contacts" element={<ContactsPage />} />
+          {/* </Route>
+        <Route element={<RestrictedRoute />}> */}
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          {/* </Route> */}
         </Route>
       </Routes>
     </>
