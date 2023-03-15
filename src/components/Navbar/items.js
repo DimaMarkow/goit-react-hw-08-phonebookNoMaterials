@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 const items = [
   {
     id: nanoid(),
-    text: 'Home',
+    text: 'HomeI',
     link: '/',
   },
   {
