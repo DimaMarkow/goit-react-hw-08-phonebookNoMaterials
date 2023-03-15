@@ -1,7 +1,8 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from 'components/Navbar/Navbar';
+
+import SharedLayout from 'components/SharedLayout/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';
 import { current } from 'redux/auth/auth-operations';
@@ -19,18 +20,19 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Suspense fallback={<p>...loading</p>}>
-      <Navbar />
+    <>
       <Routes>
-        <Route index element={<HomePage />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/contacts" element={<ContactsPage />} />
-        </Route>
-        <Route element={<RestrictedRoute />}>
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Route>
+          <Route element={<RestrictedRoute />}>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
         </Route>
       </Routes>
-    </Suspense>
+    </>
   );
 };
